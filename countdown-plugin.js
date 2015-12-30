@@ -2,6 +2,8 @@
 
 	$.fn.countdown = function(options) {
 
+		var countdown = this;
+
 		var settings = $.extend({
 			endYear: '2015',
 			endMonth: 'December',
@@ -45,13 +47,22 @@
 
 		this.append(flipBoard);
 
-		var appendToFlipBoard = function() {
+		// var timeTilEnd = timeTilTheEnd(endTime);
 
+		var appendToFlipBoard = function() {
+			var timeTilEnd = timeTilTheEnd(endTime);
+			console.log(timeTilEnd.seconds);
+			countdown.find('.flip-top').text(timeTilEnd.seconds);
+			countdown.find('.flip-bottom').text(timeTilEnd.seconds);
+			countdown.find('.flip-next').text(timeTilEnd.seconds - 1);
+			countdown.find('.flip-back').text(timeTilEnd.seconds - 1);
 		};
 
-		var timeTilEnd = timeTilTheEnd(endTime);
-		
+		setInterval(function() {
+			appendToFlipBoard();
+		}, 1000);
 
+		appendToFlipBoard();
 
 	};
 
