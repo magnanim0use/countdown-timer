@@ -37,32 +37,44 @@
 			};
 		};
 
-		var flipBoard = '<div class="flipboard">'
-			+ '<div class="flip-wrapper">'
-			+ '<div class="flip flip-next"></div>'
-			+ '<div class="flip flip-top"></div>'
-			+ '<div class="flip flip-top flip-back"></div>'
-			+ '<div class="flip flip-bottom"></div>'
-			+ '</div></div>';
+		var appendFlipboard = function(timeUnit) {
 
-		this.append(flipBoard);
+			var flipBoard = '<div class="flipboard" id="' + timeUnit + '">'
+				+ '<div class="flip-wrapper">'
+				+ '<div class="flip flip-next"></div>'
+				+ '<div class="flip flip-top"></div>'
+				+ '<div class="flip flip-top flip-back"></div>'
+				+ '<div class="flip flip-bottom"></div>'
+				+ '</div></div>';
 
-		// var timeTilEnd = timeTilTheEnd(endTime);
+			countdown.append(flipBoard);
+		};
 
-		var appendToFlipBoard = function() {
+		appendFlipboard('days');
+		appendFlipboard('hours');
+		appendFlipboard('minutes');
+		appendFlipboard('seconds');
+
+
+		var appendToFlipBoard = function(timeUnit) {
 			var timeTilEnd = timeTilTheEnd(endTime);
-			console.log(timeTilEnd.seconds);
-			countdown.find('.flip-top').text(timeTilEnd.seconds);
-			countdown.find('.flip-bottom').text(timeTilEnd.seconds);
-			countdown.find('.flip-next').text(timeTilEnd.seconds - 1);
-			countdown.find('.flip-back').text(timeTilEnd.seconds - 1);
+			countdown.find('#' + timeUnit).find('.flip-top').text(timeTilEnd[timeUnit])
+			countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit])
+			countdown.find('#' + timeUnit).find('.flip-back').text(timeTilEnd[timeUnit])
+			countdown.find('#' + timeUnit).find('.flip-next').text(timeTilEnd[timeUnit] - 1)	
 		};
 
 		setInterval(function() {
-			appendToFlipBoard();
+			appendToFlipBoard('days');
+			appendToFlipBoard('hours');
+			appendToFlipBoard('minutes');
+			appendToFlipBoard('seconds');
 		}, 1000);
 
-		appendToFlipBoard();
+		appendToFlipBoard('days');
+		appendToFlipBoard('hours');
+		appendToFlipBoard('minutes');
+		appendToFlipBoard('seconds');
 
 	};
 
