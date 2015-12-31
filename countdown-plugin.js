@@ -91,9 +91,15 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 			will be active. Otherwise, it will appear static. */
 			for (var timeUnit in timeTilEnd) {
 				if (settings.flip && currentValues[timeUnit] != timeTilEnd[timeUnit] && timeTilEnd[timeUnit] != 0) {
-					countdown.find('#' + timeUnit).find('.flip-top').css({ 'animation-play-state': 'running' }).find('p').text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-top').css({
+						'animation': 'flip 1000ms ease-in-out infinite',
+						'transform-origin': 'bottom',
+					}).find('p').text(timeTilEnd[timeUnit]);
 					countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit]);
-					countdown.find('#' + timeUnit).find('.flip-back').css({ 'animation-play-state': 'running' }).text(timeTilEnd[timeUnit] - 1);
+					countdown.find('#' + timeUnit).find('.flip-back').css({
+						'animation': 'flip-back 1000ms ease-in-out infinite',
+						'transform-origin': 'top',
+					}).text(timeTilEnd[timeUnit] - 1);
 					countdown.find('#' + timeUnit).find('.flip-next p').text(timeTilEnd[timeUnit] - 1);
 				} else {
 					countdown.find('#' + timeUnit).find('.flip-top').css({ 'animation-play-state': 'paused' }).find('p').text(timeTilEnd[timeUnit]);
