@@ -12,6 +12,7 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 		/* Settings will extend the following default values with any optional
 		parameters the developer might use to customize this plugin. */
 		var settings = $.extend({
+			title: 'End of The Year',
 			endYear: '2015',
 			endMonth: 'December',
 			endDay: '31',
@@ -36,39 +37,37 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 			var seconds = Math.floor((timeLeft/1000) % 60);
 			var minutes = Math.floor((timeLeft/(1000*60)) % 60);
 			var hours = Math.floor((timeLeft/(1000*60*60)) % 24);
-			var days = Math.floor((timeLeft/(1000*60*60*24)));
-
-			if (days >= 365) {
-			    var years = Math.floor(days/365);
-			    days = Math.floor(days % 365);
-			};
+			var days = Math.floor((timeLeft/(1000*60*60*24)) % 365);
+			var years = Math.floor((timeLeft/(1000*60*60*24*365)));
 
 			return {
 				seconds: seconds,
 				minutes: minutes,
 				hours: hours,
 				days: days,
-				years: years ? years: null,
+				years: years,
 			};
 		};
+
+		var title = '<h2>' + settings.title + '</h2>';
+		countdown.append(title);
 
 		/* This function sets up the HTML structure of the countdown timer, which
 		will be appended to the selected element. */
 		var appendFlipboard = function(timeUnit) {
-
 			var flipBoard = '<div class="flipboard" id="' + timeUnit + '">'
 				+ '<div class="flip-wrapper">'
 				+ '<div class="flip flip-next"><p></p></div>'
 				+ '<div class="flip flip-top"><p></p></div>'
 				+ '<div class="flip flip-top flip-back"><p></p></div>'
 				+ '<div class="flip flip-bottom"></div>'
-				+ '<h3>' + timeUnit + '</h3>'
+				+ '<span class="caption">' + timeUnit.toUpperCase() + '</span>'
 				+ '</div></div>';
 
 			countdown.append(flipBoard);
 		};
 
-		if (timeTilTheEnd.years) appendFlipboard('years');
+		appendFlipboard('years');
 		appendFlipboard('days');
 		appendFlipboard('hours');
 		appendFlipboard('minutes');
@@ -81,16 +80,18 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 
 			var timeTilEnd = timeTilTheEnd(endTime);
 
+			/* If the timer is up, the message defined by default or by the user's
+			input will be displayed! */
 			if (timeTilEnd === 'finished!') {
 				countdown.find('.flipboard').empty().append('<h1>' + settings.message + '</h1>');
 				return;
 			};
 
-			/* If the value has changed between the last interval, the flip animation
+			/* For the time being, if the value has changed between the last interval, the flip animation
 			will be active. Otherwise, it will appear static. */
 			for (var timeUnit in timeTilEnd) {
 				if (settings.flip && currentValues[timeUnit] != timeTilEnd[timeUnit] && timeTilEnd[timeUnit] != 0) {
-					countdown.find('#' + timeUnit).find('.flip-top p').css({ 'animation-play-state': 'running' }).text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-top').css({ 'animation-play-state': 'running' }).find('p').text(timeTilEnd[timeUnit]);
 					countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit]);
 					countdown.find('#' + timeUnit).find('.flip-back').css({ 'animation-play-state': 'running' }).text(timeTilEnd[timeUnit] - 1);
 					countdown.find('#' + timeUnit).find('.flip-next p').text(timeTilEnd[timeUnit] - 1);
@@ -113,9 +114,3 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 	};
 
 })(jQuery);
-
-
-/* to-do: fix initial flip for days/hours/minutes,
-		make sure this works with other time frame settings,
-		show happy new year when the time has elapsed,
-		center text, style heading, fix width of flipboards */

@@ -6,16 +6,26 @@ h1 {
 	color: yellow;
 }
 
+h2 {
+	color: rgb(225, 225, 225);
+	margin-top: 10px;
+}
+
 .flipboard {
 	display: inline-block;
-	margin: 0px 5px 0px 60px;
+	margin: 5px 5px 40px 60px;
 	font-family: 'Helvetics Neue', sans-serif;
 }
 
-h3 {
-	font-family: 'Helvetics Neue', sans-serif;
+.caption {
+	font-family: 'Arial', sans-serif;
 	color: grey;
-	font-size: 11px;
+	font-size: 15px;
+	top: 105%;
+	display: block;
+	position: relative;
+	text-align: center;
+	margin-left: 8px;
 }
 
 .flip-wrapper {
@@ -35,9 +45,8 @@ h3 {
 	color: #FAFAFA;
 	border-radius: 6px;
 	background: -webkit-linear-gradient(
-		top left,
-		rgb(235, 235, 235), 
-		rgb(240, 240, 240));
+		rgb(205, 205, 205), 
+		rgb(215, 215, 215));
 	font-weight: bold;
 	font-size: 38px;
 	color: black;
