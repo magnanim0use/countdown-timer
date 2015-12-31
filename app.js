@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
-	$('#end-of-year').countdown();
+	$('#end-of-year').countdown({
+		endTime: '12:06:00',
+	});
 
 	// $('#end-of-decade').countdown({
 	// 	endYear: '2019',

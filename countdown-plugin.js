@@ -1,14 +1,23 @@
+/* This jQuery plugin method, titled 'countdown', will be instantiated inside
+an anonymous function with parameter $ and ultimately called explicity by jQuery.
+This ties the $ symbol used in this function directly with jQuery to disambiguate
+the $ symbol's use in other frameworks (e.g. Angular). */
 (function($) {
 
 	$.fn.countdown = function(options) {
-
+		/* The selected element will be referenced as 'countdown'
+		when nested inside other functions. */
 		var countdown = this;
 
+		/* Settings will extend the following default values with any optional
+		parameters the developer might use to customize this plugin. */
 		var settings = $.extend({
 			endYear: '2015',
 			endMonth: 'December',
 			endDay: '31',
 			endTime: '23:59:59',
+			flip: true,
+			message: 'Happy New Year!!!',
 		}, options);
 
 		var endTime = settings.endMonth 
@@ -16,8 +25,14 @@
 			+ ' ' + settings.endYear
 			+ ' ' + settings.endTime; 
 
+		/* This function calculates the units of time between now and the 
+		designated ending time. This will be called in a setInterval function later.*/
 		var timeTilTheEnd = function(endTime) {
 			var timeLeft = Date.parse(endTime) - Date.now();
+
+			/* When the timer is finished, this function will return a string instead
+			of an object. */
+			if (timeLeft <= 1000) return 'finished!';
 			var seconds = Math.floor((timeLeft/1000) % 60);
 			var minutes = Math.floor((timeLeft/(1000*60)) % 60);
 			var hours = Math.floor((timeLeft/(1000*60*60)) % 24);
@@ -37,45 +52,70 @@
 			};
 		};
 
+		/* This function sets up the HTML structure of the countdown timer, which
+		will be appended to the selected element. */
 		var appendFlipboard = function(timeUnit) {
 
 			var flipBoard = '<div class="flipboard" id="' + timeUnit + '">'
 				+ '<div class="flip-wrapper">'
-				+ '<div class="flip flip-next"></div>'
-				+ '<div class="flip flip-top"></div>'
-				+ '<div class="flip flip-top flip-back"></div>'
+				+ '<div class="flip flip-next"><p></p></div>'
+				+ '<div class="flip flip-top"><p></p></div>'
+				+ '<div class="flip flip-top flip-back"><p></p></div>'
 				+ '<div class="flip flip-bottom"></div>'
+				+ '<h3>' + timeUnit + '</h3>'
 				+ '</div></div>';
 
 			countdown.append(flipBoard);
 		};
 
+		if (timeTilTheEnd.years) appendFlipboard('years');
 		appendFlipboard('days');
 		appendFlipboard('hours');
 		appendFlipboard('minutes');
 		appendFlipboard('seconds');
 
+		var currentValues = timeTilTheEnd(endTime);
+		currentValues['seconds'] = null;
 
-		var appendToFlipBoard = function(timeUnit) {
+		var appendToFlipBoard = function() {
+
 			var timeTilEnd = timeTilTheEnd(endTime);
-			countdown.find('#' + timeUnit).find('.flip-top').text(timeTilEnd[timeUnit])
-			countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit])
-			countdown.find('#' + timeUnit).find('.flip-back').text(timeTilEnd[timeUnit])
-			countdown.find('#' + timeUnit).find('.flip-next').text(timeTilEnd[timeUnit] - 1)	
+
+			if (timeTilEnd === 'finished!') {
+				countdown.find('.flipboard').empty().append('<h1>' + settings.message + '</h1>');
+				return;
+			};
+
+			/* If the value has changed between the last interval, the flip animation
+			will be active. Otherwise, it will appear static. */
+			for (var timeUnit in timeTilEnd) {
+				if (settings.flip && currentValues[timeUnit] != timeTilEnd[timeUnit] && timeTilEnd[timeUnit] != 0) {
+					countdown.find('#' + timeUnit).find('.flip-top p').css({ 'animation-play-state': 'running' }).text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-back').css({ 'animation-play-state': 'running' }).text(timeTilEnd[timeUnit] - 1);
+					countdown.find('#' + timeUnit).find('.flip-next p').text(timeTilEnd[timeUnit] - 1);
+				} else {
+					countdown.find('#' + timeUnit).find('.flip-top').css({ 'animation-play-state': 'paused' }).find('p').text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-back').css({ 'animation-play-state': 'paused' }).text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-next p').text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit]);
+				};
+			};
+			currentValues = timeTilEnd;
 		};
 
+		appendToFlipBoard();
+
+		/* The timer will be updated every second. */
 		setInterval(function() {
-			appendToFlipBoard('days');
-			appendToFlipBoard('hours');
-			appendToFlipBoard('minutes');
-			appendToFlipBoard('seconds');
+			appendToFlipBoard();
 		}, 1000);
-
-		appendToFlipBoard('days');
-		appendToFlipBoard('hours');
-		appendToFlipBoard('minutes');
-		appendToFlipBoard('seconds');
-
 	};
 
 })(jQuery);
+
+
+/* to-do: fix initial flip for days/hours/minutes,
+		make sure this works with other time frame settings,
+		show happy new year when the time has elapsed,
+		center text, style heading, fix width of flipboards */

@@ -2,15 +2,26 @@ body {
 	background-color: rgb(33, 33, 33);
 }
 
+h1 {
+	color: yellow;
+}
+
 .flipboard {
 	display: inline-block;
-	margin: 0px 5px 0px 140px;
+	margin: 0px 5px 0px 60px;
 	font-family: 'Helvetics Neue', sans-serif;
+}
+
+h3 {
+	font-family: 'Helvetics Neue', sans-serif;
+	color: grey;
+	font-size: 11px;
 }
 
 .flip-wrapper {
 	position: relative;
 	height: 120px;
+	width: 70px;
 }
 
 .flip {
@@ -19,19 +30,20 @@ body {
 	left: 0;
 	border: 1px rgb(225, 225, 225);
 	height: 100%;
+	width: 100%;
 	padding: 0 8px;
 	color: #FAFAFA;
 	border-radius: 6px;
 	background: -webkit-linear-gradient(
-		rgb(225, 225, 225), 
-		rgb(245, 245, 245));
-	font-weight: normal;
-	font-size: 100px;
+		top left,
+		rgb(235, 235, 235), 
+		rgb(240, 240, 240));
+	font-weight: bold;
+	font-size: 38px;
 	color: black;
-	text-shadow: 0 -1px black;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),
-		0 1px 0 rgba(255, 255, 255, 0.3) inset,
-		0 0 1px rgba(255, 255, 255, 0.3) inset;
+	text-align: center;
+	text-shadow: 1px 1px 1px black;
+	box-shadow: 0 1px  rgba(215, 215, 215, 0.4);
 }
 
 .flip-top, .flip-bottom {
@@ -46,7 +58,7 @@ body {
 
 @-webkit-keyframes flip-back {
 	to {
-		transform: rotateX(180deg);
+		transform: rotateX(0deg);
 	}
 }
 
