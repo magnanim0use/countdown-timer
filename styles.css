@@ -8,7 +8,7 @@ h1 {
 
 h2 {
 	color: rgb(225, 225, 225);
-	margin-top: 10px;
+	margin: 10px 0 0 60px;
 }
 
 .flipboard {
@@ -38,21 +38,22 @@ h2 {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border: 1px rgb(225, 225, 225);
+	border-style: solid rgb(215, 215, 215);
+	border: 2px 0 2px;
 	height: 100%;
 	width: 100%;
 	padding: 0 8px;
 	color: #FAFAFA;
 	border-radius: 6px;
 	background: -webkit-linear-gradient(
-		rgb(205, 205, 205), 
-		rgb(215, 215, 215));
+		rgb(230, 230, 230), 
+		rgb(240, 240, 240));
 	font-weight: bold;
 	font-size: 38px;
 	color: black;
 	text-align: center;
 	text-shadow: 1px 1px 1px black;
-	box-shadow: 0 1px  rgba(215, 215, 215, 0.4);
+	box-shadow: 0 2px 1px rgba(215, 215, 215, 0.4);
 }
 
 .flip-top, .flip-bottom {
@@ -72,8 +73,6 @@ h2 {
 }
 
 .flip-top {
-	animation: flip 1000ms ease-in-out infinite;
-	transform-origin: bottom;
 	height: 50%;
 	border-radius: 6px 6px 0 0;
 	z-index: 2;
@@ -81,9 +80,7 @@ h2 {
 }
 
 .flip-back {
-	animation: flip-back 1000ms ease-in-out infinite;
 	line-height: 0;
-	transform-origin: top;
 	transform: rotateX(180deg);
 	margin-top: 60px;
 	border-radius: 0 0 6px 6px;
