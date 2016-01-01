@@ -34,6 +34,7 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 			/* When the timer is finished, this function will return a string instead
 			of an object. */
 			if (timeLeft <= 1000) return 'finished!';
+
 			var seconds = Math.floor((timeLeft/1000) % 60);
 			var minutes = Math.floor((timeLeft/(1000*60)) % 60);
 			var hours = Math.floor((timeLeft/(1000*60*60)) % 24);
