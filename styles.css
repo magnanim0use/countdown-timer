@@ -39,8 +39,10 @@ h2 {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-style: solid rgb(215, 215, 215);
-	border: 2px 0 2px;
+	/*border: 2px 0 2px;*/
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
 	height: 100%;
 	width: 100%;
 	padding: 0 8px;
@@ -54,7 +56,7 @@ h2 {
 	color: black;
 	text-align: center;
 	text-shadow: 1px 1px 1px black;
-	box-shadow: 0 2px 1px rgba(215, 215, 215, 0.4);
+	box-shadow: 0 3px 1px rgba(215, 215, 215, 0.4);
 }
 
 .flip-top, .flip-bottom {

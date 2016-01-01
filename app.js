@@ -1,11 +1,7 @@
 $(document).ready(function() {
 
 	$('#end-of-year').countdown({
-		title: 'End of the Day Today!!',
-		endYear: '2016',
-		endTime: '23:59:59',
-		endMonth: 'January',
-		endDay: '01',
+		flip: false,
 	});
 
 	$('#end-of-decade').countdown({
