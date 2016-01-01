@@ -13,7 +13,7 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 		parameters the developer might use to customize this plugin. */
 		var settings = $.extend({
 			title: 'End of The Year',
-			endYear: '2015',
+			endYear: '2016',
 			endMonth: 'December',
 			endDay: '31',
 			endTime: '23:59:59',

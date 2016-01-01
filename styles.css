@@ -39,7 +39,6 @@ h2 {
 	position: absolute;
 	top: 0;
 	left: 0;
-	/*border: 2px 0 2px;*/
 	border-style: solid;
 	border-color: white;
 	border-width: 1px;
@@ -48,7 +47,7 @@ h2 {
 	padding: 0 8px;
 	color: #FAFAFA;
 	border-radius: 6px;
-	background: -webkit-linear-gradient(
+	background: linear-gradient(
 		rgb(230, 230, 230), 
 		rgb(240, 240, 240));
 	font-weight: bold;
