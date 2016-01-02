@@ -16,6 +16,25 @@ h2 {
 	display: inline-block;
 	margin: 5px 5px 40px 60px;
 	font-family: 'Helvetics Neue', sans-serif;
+	background-color: white;
+	border-style: solid;
+	border-color: rgb(205, 205, 205);
+	border-width: 1px 0 1px 0;
+	border-radius: 4px;
+	top: 2px;
+	width: 76px;
+	height: 125px;
+}
+
+.layer {
+	background-color: white;
+	border-style: solid;
+	border-color: rgb(205, 205, 205);
+	border-width: 0 0 1px 0;
+	border-radius: 4px;
+	top: 2px;
+	width: 76px;
+	height: 123px;
 }
 
 .caption {
@@ -32,7 +51,7 @@ h2 {
 .flip-wrapper {
 	position: relative;
 	height: 120px;
-	width: 70px;
+	width: 60px;
 }
 
 .flip {
@@ -40,14 +59,14 @@ h2 {
 	top: 0;
 	left: 0;
 	border-style: solid;
-	border-color: white;
-	border-width: 1px;
+	border-color: rgb(215, 215, 215);
+	border-width: 1px 0 1px 0;
 	height: 100%;
 	width: 100%;
 	padding: 0 8px;
 	color: #FAFAFA;
 	border-radius: 6px;
-	background: linear-gradient(
+	background: -webkit-linear-gradient(
 		rgb(230, 230, 230), 
 		rgb(240, 240, 240));
 	font-weight: bold;
@@ -55,7 +74,7 @@ h2 {
 	color: black;
 	text-align: center;
 	text-shadow: 1px 1px 1px black;
-	box-shadow: 0 3px 1px rgba(215, 215, 215, 0.4);
+	/*box-shadow: 0 2px 1px rgba(215, 215, 215, 0.4);*/
 }
 
 .flip-top, .flip-bottom {
@@ -64,13 +83,13 @@ h2 {
 
 @-webkit-keyframes flip {
 	to {
-		transform: rotateX(180deg);
+		-webkit-transform: rotateX(180deg);
 	}
 }
 
 @-webkit-keyframes flip-back {
 	to {
-		transform: rotateX(0deg);
+		-webkit-transform: rotateX(0deg);
 	}
 }
 
@@ -78,12 +97,12 @@ h2 {
 	height: 50%;
 	border-radius: 6px 6px 0 0;
 	z-index: 2;
-	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 }
 
 .flip-back {
 	line-height: 0;
-	transform: rotateX(180deg);
+	-webkit-transform: rotateX(180deg);
 	margin-top: 60px;
 	border-radius: 0 0 6px 6px;
 }
@@ -92,6 +111,7 @@ h2 {
 	height: 50%;
 	margin-top: 60px;
 	border-radius: 0 0 6px 6px;
+	border-width: 0;
 	border-top: none;
 	line-height: 0;
 	z-index: 1;

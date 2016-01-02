@@ -56,14 +56,14 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 		/* This function sets up the HTML structure of the countdown timer, which
 		will be appended to the selected element. */
 		var appendFlipboard = function(timeUnit) {
-			var flipBoard = '<div class="flipboard" id="' + timeUnit + '">'
+			var flipBoard = '<div class="flipboard" id="' + timeUnit + '"><div class="layer">'
 				+ '<div class="flip-wrapper">'
 				+ '<div class="flip flip-next"><p></p></div>'
 				+ '<div class="flip flip-top"><p></p></div>'
 				+ '<div class="flip flip-top flip-back"><p></p></div>'
 				+ '<div class="flip flip-bottom"></div>'
 				+ '<span class="caption">' + timeUnit.toUpperCase() + '</span>'
-				+ '</div></div>';
+				+ '</div></div></div>';
 
 			countdown.append(flipBoard);
 		};
@@ -77,14 +77,15 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 		var currentValues = timeTilTheEnd(endTime);
 		currentValues['seconds'] = null;
 
-		var appendToFlipBoard = function() {
+		function appendToFlipBoard () {
 
 			var timeTilEnd = timeTilTheEnd(endTime);
 
 			/* If the timer is up, the message defined by default or by the user's
 			input will be displayed! */
 			if (timeTilEnd === 'finished!') {
-				countdown.find('.flipboard').empty().append('<h1>' + settings.message + '</h1>');
+				countdown.append('<h1>' + settings.message + '</h1>');
+				clearInterval(countdownTimer);
 				return;
 			};
 
@@ -112,12 +113,12 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 			currentValues = timeTilEnd;
 		};
 
-		appendToFlipBoard();
-
 		/* The timer will be updated every second. */
-		setInterval(function() {
+		var countdownTimer = setInterval(function() {
 			appendToFlipBoard();
 		}, 1000);
+
+		appendToFlipBoard();
 	};
 
 })(jQuery);
