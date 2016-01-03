@@ -22,8 +22,9 @@ h2 {
 	border-width: 1px 0 1px 0;
 	border-radius: 4px;
 	top: 2px;
-	width: 76px;
+	width: 92px;
 	height: 125px;
+	padding-top: 1px;
 }
 
 .layer {
@@ -33,7 +34,7 @@ h2 {
 	border-width: 0 0 1px 0;
 	border-radius: 4px;
 	top: 2px;
-	width: 76px;
+	width: 92px;
 	height: 123px;
 }
 
@@ -51,7 +52,7 @@ h2 {
 .flip-wrapper {
 	position: relative;
 	height: 120px;
-	width: 60px;
+	width: 76px;
 }
 
 .flip {
@@ -70,7 +71,7 @@ h2 {
 		rgb(230, 230, 230), 
 		rgb(240, 240, 240));
 	font-weight: bold;
-	font-size: 38px;
+	font-size: 50px;
 	color: black;
 	text-align: center;
 	text-shadow: 1px 1px 1px black;
@@ -94,10 +95,15 @@ h2 {
 }
 
 .flip-top {
+	line-height: 0.4;
 	height: 50%;
 	border-radius: 6px 6px 0 0;
 	z-index: 2;
 	-webkit-backface-visibility: hidden;
+}
+
+.flip-next {
+	line-height: 0.4;
 }
 
 .flip-back {

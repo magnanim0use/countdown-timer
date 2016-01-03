@@ -17,7 +17,7 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 			endMonth: 'December',
 			endDay: '31',
 			endTime: '23:59:59',
-			flip: true,
+			flip: false,
 			message: 'Happy New Year!!!',
 		}, options);
 
@@ -96,13 +96,13 @@ the $ symbol's use in other frameworks (e.g. Angular). */
 					countdown.find('#' + timeUnit).find('.flip-top').css({
 						'animation': 'flip 1000ms ease-in-out infinite',
 						'transform-origin': 'bottom',
-					}).find('p').text(timeTilEnd[timeUnit]);
-					countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit]);
+					}).find('p').text(timeTilEnd[timeUnit] + 1);
+					countdown.find('#' + timeUnit).find('.flip-bottom').text(timeTilEnd[timeUnit] + 1);
 					countdown.find('#' + timeUnit).find('.flip-back').css({
 						'animation': 'flip-back 1000ms ease-in-out infinite',
 						'transform-origin': 'top',
-					}).text(timeTilEnd[timeUnit] - 1);
-					countdown.find('#' + timeUnit).find('.flip-next p').text(timeTilEnd[timeUnit] - 1);
+					}).text(timeTilEnd[timeUnit]);
+					countdown.find('#' + timeUnit).find('.flip-next p').text(timeTilEnd[timeUnit]);
 				} else {
 					countdown.find('#' + timeUnit).find('.flip-top').css({ 'animation-play-state': 'paused' }).find('p').text(timeTilEnd[timeUnit]);
 					countdown.find('#' + timeUnit).find('.flip-back').css({ 'animation-play-state': 'paused' }).text(timeTilEnd[timeUnit]);
